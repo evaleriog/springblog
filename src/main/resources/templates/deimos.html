@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Deimos</title>
+</head>
+<body>
+    <nav th:replace="partials/navbar :: main-nav"></nav>
+    <h1>Deimos Developer Days</h1>
+    <p>We have <span th:text="${days}"></span> days left of developer day! </p>
+</body>
+</html>
