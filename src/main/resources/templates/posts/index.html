@@ -3,14 +3,21 @@
 <head th:replace="partials/header :: main-head"></head>
 <body>
     <nav th:replace="partials/navbar :: main-nav"></nav>
+
     <h1>These are all the posts</h1>
-    <div th:each="post : ${posts}">
-        <div>
-            <h4 th:text="${post.title}"></h4>
-            <p th:text="${post.body}"></p>
+
+    <div th:each="post : ${posts}" class="card-group">
+
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header" th:text="${post.title}"></div>
+            <div class="card-body">
+                <p class="card-text" th:text="${post.body}"></p>
+            </div>
         </div>
+
     </div>
 
-    <footer th:replace="partials/footer :: main-footer"></footer>
+
+    <div th:replace="partials/footer :: main-footer"></div>
 </body>
 </html>

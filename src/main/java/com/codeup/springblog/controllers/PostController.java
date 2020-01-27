@@ -10,6 +10,7 @@ import java.util.List;
 
 @Controller
 public class PostController {
+
     @GetMapping("/posts")
     //@ResponseBody
     public String posts(Model model){

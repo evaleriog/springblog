@@ -3,12 +3,16 @@
 <head th:replace="partials/header :: main-head"></head>
 <body>
     <nav th:replace="partials/navbar :: main-nav"></nav>
+
     <h1>You are viewing post # <span th:text="${id}"></span> </h1>
 
-    <div>
-        <h4 th:text="${post.title}"></h4>
-        <p th:text="${post.body}"></p>
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header" th:text="${post.title}"></div>
+        <div class="card-body">
+            <p class="card-text" th:text="${post.body}"></p>
+        </div>
     </div>
-    <footer th:replace="partials/footer :: main-footer"></footer>
+
+    <div th:replace="partials/footer :: main-footer"></div>
 </body>
 </html>
