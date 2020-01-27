@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/header :: main-head"></head>
+<body>
+    <h1>Please make a guess....</h1>
+    <a href="/roll-dice/1">1</a>
+    <a href="/roll-dice/2">2</a>
+    <a href="/roll-dice/3">3</a>
+    <a href="/roll-dice/4">4</a>
+    <a href="/roll-dice/5">5</a>
+    <a href="/roll-dice/6">6</a>
+
+    <div>
+        <h6 th:text="${userNumber}"></h6>
+
+        <h6 th:text="${guess}"></h6>
+        <p th:text="${response}"></p>
+
+        <h6 th:text="${guess2}"></h6>
+        <p th:text="${response2}"></p>
+
+        <h6 th:text="${guess3}"></h6>
+        <p th:text="${response3}"></p>
+
+        <h6 th:text="${guess4}"></h6>
+        <p th:text="${response4}"></p>
+
+        <h5 th:text="${total}"></h5>
+    </div>
+    <footer th:replace="partials/footer :: main-footer"></footer>
+</body>
+</html>

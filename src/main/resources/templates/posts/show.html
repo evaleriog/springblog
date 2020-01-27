@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/header :: main-head"></head>
+<body>
+    <nav th:replace="partials/navbar :: main-nav"></nav>
+    <h1>You are viewing post # <span th:text="${id}"></span> </h1>
+
+    <div>
+        <h4 th:text="${post.title}"></h4>
+        <p th:text="${post.body}"></p>
+    </div>
+    <footer th:replace="partials/footer :: main-footer"></footer>
+</body>
+</html>
