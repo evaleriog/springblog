@@ -15,13 +15,13 @@ public class PostController {
     //@ResponseBody
     public String posts(Model model){
         List<Post> all = new ArrayList<>();
-        all.add(new Post("Best Vacation Ever", "So much fun I had in the best place"));
-        all.add(new Post("Computer", "I just bought a Mac"));
-        all.add(new Post("Food", "Best tacos ever"));
-        all.add(new Post("Java", "I just learner java"));
-        all.add(new Post("SHoes", "Bought new shoes"));
-        all.add(new Post("Best Parks", "Here it is a list of best parks"));
-        all.add(new Post("Codeup", "Coding Bootcamp"));
+        all.add(new Post(1,"Best Vacation Ever", "So much fun I had in the best place"));
+        all.add(new Post(2,"Computer", "I just bought a Mac"));
+        all.add(new Post(3,"Food", "Best tacos ever"));
+        all.add(new Post(4,"Java", "I just learner java"));
+        all.add(new Post(5,"SHoes", "Bought new shoes"));
+        all.add(new Post(6,"Best Parks", "Here it is a list of best parks"));
+        all.add(new Post(7,"Codeup", "Coding Bootcamp"));
 
         model.addAttribute("posts", all);
 
@@ -30,13 +30,12 @@ public class PostController {
 
     @GetMapping(path = "/posts/{id}")
     //@ResponseBody
-    public String posts(@PathVariable int id, Model model){
+    public String viewPost(@PathVariable int id, Model model){
         String title = "I need help with my resume";
         String body = "I am new to this element of creating a resume. Please" +
                 " someone help me";
-        Post post = new Post(title, body);
+        Post post = new Post(id,title, body);
 
-        model.addAttribute("id", id);
         model.addAttribute("post", post);
 
         return "/posts/show";
