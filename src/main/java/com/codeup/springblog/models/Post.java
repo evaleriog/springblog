@@ -1,14 +1,34 @@
 package com.codeup.springblog.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="posts")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INT UNSIGNED")
     private long id;
+
+    @Column(nullable = false, length = 100)
     private String title;
+
+    @Column(nullable = false)
     private String body;
+
+    public Post(){}
 
     public Post(long id, String title, String body){
         this.id = id;
         this.title = title;
         this.body = body;
+    }
+    public Long getId(){
+        return this.id;
+    }
+
+    public void setId(long id){
+        this.id = id;
     }
 
     public String getTitle(){

@@ -10,7 +10,7 @@ public class Dog {
     @Column(columnDefinition = "INT(11) UNSIGNED", nullable = false)
     private int id;
 
-    @Column(columnDefinition = "TINYINT(11) UNSIGNED", nullable = false)
+    @Column(columnDefinition = "TINYINT(11) UNSIGNED", nullable = false, unique = true)
     private int age;
 
     @Column(nullable = false, length = 200)
