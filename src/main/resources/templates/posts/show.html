@@ -4,12 +4,16 @@
 <body>
     <nav th:replace="partials/navbar :: main-nav"></nav>
 
-    <h1>You are viewing post # <span th:text="${post.id}"></span> </h1>
+<!--    <h1>You are viewing post # <span th:text="${post.id}"></span> </h1>-->
 
     <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
         <div class="card-header" th:text="${post.title}"></div>
         <div class="card-body">
             <p class="card-text" th:text="${post.body}"></p>
+        </div>
+        <div>
+            <a th:href="@{'/delete/' + ${post.id}}">Delete</a>
+            <a th:href="@{'/update/' + ${post.id}}">Edit</a>
         </div>
     </div>
 
