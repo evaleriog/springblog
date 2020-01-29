@@ -16,6 +16,9 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
+    @OneToOne
+    private PostDetail postDetail;
+
     public Post(){}
 
     public Post(long id, String title, String body){
@@ -45,5 +48,9 @@ public class Post {
 
     public void setBody(String body){
         this.body = body;
+    }
+
+    public PostDetail getPostDetail(){
+        return this.postDetail;
     }
 }
