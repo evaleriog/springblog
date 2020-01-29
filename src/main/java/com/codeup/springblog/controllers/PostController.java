@@ -36,6 +36,12 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    @GetMapping("/details/{id}")
+    public String detailsByPost(@PathVariable long id, Model model){
+        model.addAttribute("post", postDao.getOne(id));
+        return "posts/details";
+    }
+
     @GetMapping("/update/{id}")
     public String updatePostGet(@PathVariable long id, Model model){
         Post post = postDao.getOne(id);
