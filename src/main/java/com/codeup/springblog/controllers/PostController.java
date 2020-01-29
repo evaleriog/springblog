@@ -6,9 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class PostController {
     private final PostRepository postDao;
@@ -34,8 +31,8 @@ public class PostController {
     }
 
     @GetMapping(path = "/delete/{id}")
-    public String deletePost(@PathVariable long id, Model model){
-
+    public String deletePost(@PathVariable long id){
+        //postDao.deleteById(id);
         postDao.delete(postDao.getOne(id));
         return "redirect:/posts";
     }

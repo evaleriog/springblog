@@ -10,10 +10,10 @@ public class Post {
     @Column(columnDefinition = "INT UNSIGNED")
     private long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
     public Post(){}
