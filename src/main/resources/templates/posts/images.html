@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/header :: head('Images')"></head>
+<body>
+    <div th:each="image : ${post.getImages()}">
+        <h1 th:text="${image.title}"></h1>
+        <img th:src="${image.url}"/>
+    </div>
+</body>
+</html>
