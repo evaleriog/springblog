@@ -42,6 +42,12 @@ public class PostController {
         return "posts/details";
     }
 
+    @GetMapping("images/{id}")
+    public String images(@PathVariable long id, Model model){
+        model.addAttribute("post", postDao.getOne(id));
+        return "posts/images";
+    }
+
     @GetMapping("/update/{id}")
     public String updatePostGet(@PathVariable long id, Model model){
         Post post = postDao.getOne(id);
