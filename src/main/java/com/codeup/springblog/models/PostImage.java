@@ -16,9 +16,9 @@ public class PostImage {
     @Column(nullable = false, length = 1000)
     private String url;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    private Post post;
+//    @ManyToOne
+//    @JoinColumn(name = "post_id")
+//    private Post post;
 
     public PostImage(){}
 
@@ -53,11 +53,11 @@ public class PostImage {
         this.url = url;
     }
 
-    public Post getPost(){
-        return this.post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
+//    public Post getPost(){
+//        return this.post;
+//    }
+//
+//    public void setPost(Post post) {
+//        this.post = post;
+//    }
 }

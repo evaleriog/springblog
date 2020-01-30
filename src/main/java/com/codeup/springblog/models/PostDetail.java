@@ -17,8 +17,8 @@ public class PostDetail {
 
     private String topicDescription;
 
-    @OneToOne(mappedBy = "postDetail")
-    private Post post;
+//    @OneToOne(mappedBy = "postDetail")
+//    private Post post;
 
     public PostDetail(){}
 
