@@ -2,6 +2,7 @@ package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.repositories.PostRepository;
+import com.codeup.springblog.repositories.TagRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final TagRepository tagDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao){
+    public PostController(PostRepository postDao, UserRepository userDao, TagRepository tagDao){
         this.postDao = postDao;
         this.userDao = userDao;
+        this.tagDao = tagDao;
     }
 
     @GetMapping("/posts")
@@ -85,5 +88,11 @@ public class PostController {
         Post post = new Post(title, body, userDao.getOne(id));
         postDao.save(post);
         return "redirect:/posts";
+    }
+
+    @GetMapping("tags/{id}")
+    public String tagById(@PathVariable long id, Model model){
+        model.addAttribute("tag", tagDao.getOne(id));
+        return "/posts/tag";
     }
 }

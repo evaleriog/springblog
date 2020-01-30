@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/header :: head('Tag')"></head>
+<body>
+    <h1 th:text="${tag.name}"></h1>
+    <div th:each="post : ${tag.getPosts()}">
+        <p th:text="${post.getTitle()}"></p>
+    </div>
+</body>
+</html>
