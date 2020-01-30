@@ -27,6 +27,14 @@ public class Post {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "posts_tags",
+            joinColumns = {@JoinColumn(name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
+    )
+    private List<Tag> tags;
+
     public Post(){}
 
     public Post(long id, String title, String body){
@@ -71,6 +79,14 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setTags(List<Tag> tags){
+        this.tags = tags;
+    }
+
+    public List<Tag> getTags(){
+        return tags;
     }
 
     //    public PostDetail getPostDetail(){
