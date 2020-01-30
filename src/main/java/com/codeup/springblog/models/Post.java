@@ -17,11 +17,15 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
-    @OneToOne
-    private PostDetail postDetail;
+//    @OneToOne
+//    private PostDetail postDetail;
+//
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+//    private List<PostImage> images;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<PostImage> images;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public Post(){}
 
@@ -29,6 +33,12 @@ public class Post {
         this.id = id;
         this.title = title;
         this.body = body;
+    }
+
+    public Post(String title, String body, User user){
+        this.title = title;
+        this.body = body;
+        this.user = user;
     }
 
     public Long getId(){
@@ -55,15 +65,23 @@ public class Post {
         this.body = body;
     }
 
-//    public PostDetail getPostDetail(){
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    //    public PostDetail getPostDetail(){
 //        return this.postDetail;
 //    }
 
-    public List<PostImage> getImages(){
-        return this.images;
-    }
-
-    public void setImages(List<PostImage> images) {
-        this.images = images;
-    }
+//    public List<PostImage> getImages(){
+//        return this.images;
+//    }
+//
+//    public void setImages(List<PostImage> images) {
+//        this.images = images;
+//    }
 }
