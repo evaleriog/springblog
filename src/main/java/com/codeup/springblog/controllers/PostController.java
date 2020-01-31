@@ -62,30 +62,23 @@ public class PostController {
     }
 
     @PostMapping("/update/{id}")
-    public String updatePost(@PathVariable long id,
-                             @RequestParam(name = "title")String title,
-                             @RequestParam(name = "body") String body){
-        Post post = postDao.getOne(id);
-        post.setTitle(title);
-        post.setBody(body);
+    public String updatePost(@ModelAttribute Post post){
 
         postDao.save(post);
 
-        String path = "redirect:/posts/" + post.getId().toString();
-        return path;
+        return "redirect:/posts/" + post.getId().toString();
     }
 
     @GetMapping("/posts/create")
     public String postsCreate(Model model){
+        model.addAttribute("post", new Post());
         model.addAttribute("user", userDao.getOne(1L));
         return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String postCreatePost(@RequestParam("userId") long id,
-                                 @RequestParam("title") String title,
-                                 @RequestParam("body") String body){
-        Post post = new Post(title, body, userDao.getOne(id));
+    public String postCreatePost(@RequestParam("userId") long id, @ModelAttribute Post post){
+        post.setUser(userDao.getOne(id));
         postDao.save(post);
         return "redirect:/posts";
     }

@@ -3,13 +3,17 @@
 <head th:replace="partials/header :: head('Create')"></head>
 <body>
     <h1 th:text="@{'Welcome ' + ${user.getUsername()} + ', lets create a Post'}"></h1>
-    <form action="/posts/create" method="POST">
+    <form th:action="@{/posts/create}" th:method="POST" th:object="${post}">
         <input type="hidden" name="userId" th:value="${user.getId()}">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title"/>
+        <input type="text" id="title" th:field="*{title}"/>
         <label for="body">Body</label>
-        <textarea id="body" name="body"></textarea>
+        <textarea id="body" th:field="*{body}"></textarea>
         <button>Create Post</button>
+    </form>
+
+    <form th:insert="partials/postForm :: postForm('/posts/create','Create Post')">
+        <input type="hidden" name="userId" th:value="${user.getId()}">
     </form>
 </body>
 </html>
