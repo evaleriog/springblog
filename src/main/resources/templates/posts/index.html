@@ -4,19 +4,22 @@
 <body>
     <nav th:replace="partials/navbar :: main-nav"></nav>
 
-    <h1>These are all the posts</h1>
+    <div th:replace="partials/jumbotron :: jumbotron('View of all Posts')"></div>
 
-    <div th:each="post : ${posts}" class="card-group">
+    <div class="card-deck">
 
-        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-            <div class="card-header"><a th:href="@{'/posts/' + ${post.id}}"><span th:text="${post.title}"></span></a></div>
-            <div class="card-body">
-                <p class="card-text" th:text="${post.body}"></p>
+        <div th:each="post : ${posts}">
+
+            <div class="card border-secondary mb-3" style="width: 18rem;">
+                <div class="card-header"><a th:href="@{'/posts/' + ${post.id}}"><span th:text="${post.title}"></span></a></div>
+                <div class="card-body text-secondary">
+                    <p class="card-text" th:text="${post.body}"></p>
+                </div>
             </div>
+
         </div>
 
     </div>
-
 
     <div th:replace="partials/footer :: main-footer"></div>
 </body>

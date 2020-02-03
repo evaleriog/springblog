@@ -3,24 +3,27 @@
 <head th:replace="partials/header :: head('Post')"></head>
 <body>
     <nav th:replace="partials/navbar :: main-nav"></nav>
+    <div th:replace="partials/jumbotron :: jumbotron('Viewing Post ' + ${post.getTitle()})"></div>
 
-<!--    <h1>You are viewing post # <span th:text="${post.id}"></span> </h1>-->
-
-    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header" th:text="${post.getTitle()}"></div>
+    <div class="card border-dark mb-3">
         <div class="card-body">
+            <h5 class="card-title" th:text="${post.getTitle()}"></h5>
             <p class="card-text" th:text="${post.getBody()}"></p>
-            <p class="card-text" th:text="@{'Created by: ' + ${post.getUser().getEmail()}}"></p>
-            <div th:each="tag : ${post.getTags()}">
-                <span class="badge badge-pill badge-primary" th:text="${tag.getName()}"></span>
-            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:text="@{'Created by: ' + ${post.getUser().getEmail()}}"></li>
+                <li class="list-group-item">
+                    <div th:each="tag : ${post.getTags()}">
+                        <span class="badge badge-pill badge-primary" th:text="${tag.getName()}"></span>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <div>
-            <a th:href="@{'/delete/' + ${post.id}}">Delete</a>
-            <a th:href="@{'/update/' + ${post.id}}">Edit</a>
-<!--            <a th:href="@{'/details/' + ${post.id}}">Details</a>-->
+        <div class="card-footer" th:if="${show == 'true'}">
+            <a th:href="@{'/delete/' + ${post.id}}" class="text-danger">Delete</a>
+            <a th:href="@{'/update/' + ${post.id}}" class="text-info">Edit</a>
         </div>
     </div>
+
 
     <div th:replace="partials/footer :: main-footer"></div>
 </body>
