@@ -3,19 +3,23 @@
 <head th:replace="partials/header :: head('Updating Post ' + ${post.title})"></head>
 <body>
 <nav th:replace="partials/navbar :: main-nav"></nav>
-
+<div th:replace="partials/jumbotron :: jumbotron('Updating Post ' + ${post.getTitle()})"></div>
     <form th:method="POST" th:action="@{'/update/' + ${post.id}}" th:object="${post}">
         <input type="hidden" th:field="*{user}">
-        <p>
-            <label for="title">Title</label>
-            <input type="text" th:field="*{title}" id="title" >
-        </p>
-        <p>
-            <label for="body">Description</label>
-            <textarea rows="10" th:field="*{body}" id="body" ></textarea>
-        </p>
+        <div class="form-group row">
+            <label for="title" class="col-sm-2 col-form-label">Title</label>
+            <input type="text" th:field="*{title}" id="title" class="form-control col-sm-10">
+        </div>
 
-        <button>Submit</button>
+        <div class="form-group row">
+            <label for="body" class="col-sm-2 col-form-label">Description</label>
+            <textarea rows="10" th:field="*{body}" id="body" class="form-control col-sm-10"></textarea>
+        </div>
+
+        <div class="form-group row">
+            <button type="submit" class="btn btn-info btn-block">Update Post</button>
+        </div>
+
     </form>
 <!--    <form th:replace="partials/postForm :: postForm('/update/' + ${post.id},'Update Post')"></form>-->
 <div th:replace="partials/footer :: main-footer"></div>

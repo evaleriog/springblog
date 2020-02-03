@@ -36,7 +36,15 @@ public class PostController {
     @GetMapping(path = "/posts/{id}")
     //@ResponseBody
     public String viewPost(@PathVariable long id, Model model){
-        model.addAttribute("post", postDao.getOne(id));
+        Post post = postDao.getOne(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        model.addAttribute("post", post);
+
+        if(post.getUser().getId() == user.getId()){
+            model.addAttribute("show", "true");
+        }
+
         return "/posts/show";
     }
 
