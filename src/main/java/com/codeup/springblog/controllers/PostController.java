@@ -1,10 +1,12 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.TagRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -75,13 +77,13 @@ public class PostController {
     @GetMapping("/posts/create")
     public String postsCreate(Model model){
         model.addAttribute("post", new Post());
-        model.addAttribute("user", userDao.getOne(1L));
         return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String postCreatePost(@RequestParam("userId") long id, @ModelAttribute Post post){
-        post.setUser(userDao.getOne(id));
+    public String postCreatePost(@ModelAttribute Post post){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(user);
         postDao.save(post);
         String body ="You just created a post with the title: " + post.getTitle() + ", and content: " + post.getBody();
         emailServiceDao.preparedAndSend(post,

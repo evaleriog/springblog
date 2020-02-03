@@ -16,7 +16,7 @@ public class User {
     @Column(nullable = false, length = 150)
     private String email;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 150)
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -29,6 +29,14 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    //copy constructor, alternative to cloning an object. Will used it in security package interfaces
+    public User(User copy){
+        id = copy.id;
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
     }
 
     public long getId() {
