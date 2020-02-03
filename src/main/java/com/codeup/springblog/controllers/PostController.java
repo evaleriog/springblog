@@ -4,6 +4,7 @@ import com.codeup.springblog.models.Post;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.TagRepository;
 import com.codeup.springblog.repositories.UserRepository;
+import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,13 @@ public class PostController {
     private final PostRepository postDao;
     private final UserRepository userDao;
     private final TagRepository tagDao;
+    private final EmailService emailServiceDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao, TagRepository tagDao){
+    public PostController(PostRepository postDao, UserRepository userDao, TagRepository tagDao, EmailService emailServiceDao){
         this.postDao = postDao;
         this.userDao = userDao;
         this.tagDao = tagDao;
+        this.emailServiceDao = emailServiceDao;
     }
 
     @GetMapping("/posts")
@@ -80,6 +83,10 @@ public class PostController {
     public String postCreatePost(@RequestParam("userId") long id, @ModelAttribute Post post){
         post.setUser(userDao.getOne(id));
         postDao.save(post);
+        String body ="You just created a post with the title: " + post.getTitle() + ", and content: " + post.getBody();
+        emailServiceDao.preparedAndSend(post,
+                "You created a new post",
+                body);
         return "redirect:/posts";
     }
 
