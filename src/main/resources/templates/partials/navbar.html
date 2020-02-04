@@ -10,12 +10,12 @@
         <ul class="nav">
             <li class="nav-item"><a href="/posts">Home</a></li>
 
-            <div sec:authorize="!isAuthenticated()">
+            <div class="nav-item" sec:authorize="!isAuthenticated()">
                 <li class="nav-item"><a href="/login">Login</a></li>
                 <li class="nav-item"><a href="/sign-up">Register</a></li>
             </div>
 
-            <div sec:authorize="isAuthenticated()">
+            <div class="nav-item" sec:authorize="isAuthenticated()">
                 <li class="nav-item"><a href="/posts/create">Create Post</a></li>
 
                 <li class="nav-item">
@@ -24,8 +24,8 @@
                     </form>
                 </li>
             </div>
-            <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <li>Disable</li>
+            <div class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                <li class="nav-item">Disable</li>
             </div>
 
         </ul>

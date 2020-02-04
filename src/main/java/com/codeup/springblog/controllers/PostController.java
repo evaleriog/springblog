@@ -3,6 +3,7 @@ package com.codeup.springblog.controllers;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostRepository;
+import com.codeup.springblog.repositories.Roles;
 import com.codeup.springblog.repositories.TagRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.services.EmailService;
@@ -17,12 +18,14 @@ public class PostController {
     private final UserRepository userDao;
     private final TagRepository tagDao;
     private final EmailService emailServiceDao;
+    private final Roles roles;
 
-    public PostController(PostRepository postDao, UserRepository userDao, TagRepository tagDao, EmailService emailServiceDao){
+    public PostController(PostRepository postDao, UserRepository userDao, TagRepository tagDao, EmailService emailServiceDao, Roles roles){
         this.postDao = postDao;
         this.userDao = userDao;
         this.tagDao = tagDao;
         this.emailServiceDao = emailServiceDao;
+        this.roles = roles;
     }
 
     @GetMapping("/posts")
@@ -48,7 +51,7 @@ public class PostController {
         return "/posts/show";
     }
 
-    @GetMapping(path = "/delete/{id}")
+    @GetMapping( "/delete/{id}")
     public String deletePost(@PathVariable long id){
         //postDao.deleteById(id);
         postDao.delete(postDao.getOne(id));
