@@ -24,6 +24,9 @@
                     </form>
                 </li>
             </div>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <li>Disable</li>
+            </div>
 
         </ul>
     </nav>
