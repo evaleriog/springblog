@@ -1,6 +1,7 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.User;
+import com.codeup.springblog.models.UserRole;
 import com.codeup.springblog.repositories.Roles;
 import com.codeup.springblog.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         users.save(user);
+        roles.save(UserRole.roleUser(user));
         return "redirect:/login";
     }
 }

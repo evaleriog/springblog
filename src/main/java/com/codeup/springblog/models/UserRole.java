@@ -46,4 +46,12 @@ public class UserRole {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public static UserRole roleUser(User user){
+        return new UserRole(user.getId(), "ROLE_USER");
+    }
+
+    public static UserRole roleAdmin(User user){
+        return new UserRole(user.getId(), "ROLE_ADMIN");
+    }
 }
