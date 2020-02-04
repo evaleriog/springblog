@@ -1,6 +1,7 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.User;
+import com.codeup.springblog.repositories.Roles;
 import com.codeup.springblog.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
     private UserRepository users;
     private PasswordEncoder passwordEncoder;
+    private Roles roles;
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder){
+    public UserController(UserRepository users, PasswordEncoder passwordEncoder, Roles roles){
         this.users = users;
         this.passwordEncoder = passwordEncoder;
+        this.roles = roles;
     }
 
     @GetMapping("/sign-up")
